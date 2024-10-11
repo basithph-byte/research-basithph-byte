@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Item</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'lists/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Are you sure you want to delete "{{ item.item_name }}"?</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn delete-btn">Confirm Delete</button>
+        </form>
+        <a href="{% url 'list_detail' item.list.id %}" class="back-link">Cancel</a>
+    </div>
+</body>
+</html>

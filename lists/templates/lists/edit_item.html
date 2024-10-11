@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Item</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'lists/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Item in {{ list.name }}</h1>
+        <form method="POST" class="item-form">
+            {% csrf_token %}
+            <label for="item_name">Item Name:</label>
+            <input type="text" name="item_name" id="item_name" value="{{ item.item_name }}" required>
+            <button type="submit" class="btn">Save Changes</button>
+        </form>
+        <a href="{% url 'list_detail' list.id %}" class="back-link">Back to list</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create List</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'lists/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create a new list</h1>
+        <form method="POST" class="item-form">
+            {% csrf_token %}
+            <label for="list_name">List Name:</label>
+            <input type="text" name="list_name" id="list_name" required>
+            <button type="submit" class="btn">Create List</button>
+        </form>
+    </div>
+</body>
+</html>

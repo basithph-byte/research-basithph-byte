@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ list.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'lists/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ list.name }}</h1>
+        <form method="POST" class="item-form">
+            {% csrf_token %}
+            <label for="item_name">Item Name:</label>
+            <input type="text" name="item_name" id="item_name" required>
+            <button type="submit" class="btn">Add Item</button>
+        </form>
+
+        <h2>Items</h2>
+        <div class="item-container">
+            {% for item in items %}
+            <div class="item-card">
+                <p>{{ item.item_name }}</p>
+                <div class="actions">
+                    <a class="edit-btn" href="{% url 'edit_item' list.id item.id %}">Edit</a>
+                    <a class="delete-btn" href="{% url 'delete_item' list.id item.id %}">Delete</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'list_view' %}" class="back-link">Back to list creation</a>
+    </div>
+</body>
+</html>
